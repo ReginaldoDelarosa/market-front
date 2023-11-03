@@ -24,7 +24,7 @@ function App() {
 
   const checkLoggedIn = () => {
     axiosInstance
-      .get("http://localhost:1200/getCharacter")
+      .get("https://login-auth-xqc9.onrender.com/getCharacter")
       .then((res) => {
         setLoggedIn(true);
         setCharacter(res.data);
@@ -39,7 +39,7 @@ function App() {
     event.preventDefault();
 
     axiosInstance
-      .post("http://localhost:1200/login", { username, password })
+      .post("https://login-auth-xqc9.onrender.com/login", { username, password })
       .then(() => checkLoggedIn())
       .catch(() => console.log("Login failed"));
   };
@@ -49,7 +49,7 @@ function App() {
 
     axiosInstance
       .post(
-        "http://localhost:1200/register",
+        "https://login-auth-xqc9.onrender.com/register",
         { usernameR, email, passwordR },
         { withCredentials: true }
       )
