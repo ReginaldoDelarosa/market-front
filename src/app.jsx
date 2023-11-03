@@ -94,7 +94,7 @@ function App() {
             className="p-2 bg-blue-500 text-white rounded shadow hover:bg-blue-400 focus:outline-none focus:shadow-outline"
             onClick={async () => {
               await axios.post(
-                "http://localhost:1200/logout",
+                "https://login-auth-xqc9.onrender.com/logout",
                 {},
                 { withCredentials: true }
               );
