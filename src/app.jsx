@@ -39,7 +39,7 @@ function App() {
     event.preventDefault();
 
     axiosInstance
-      .post("https://login-auth-xqc9.onrender.com/login", { username, password })
+      .post("https://login-auth-xqc9.onrender.com/login", { username, password }, { withCredentials: true })
       .then(() => checkLoggedIn())
       .catch(() => console.log("Login failed"));
   };
