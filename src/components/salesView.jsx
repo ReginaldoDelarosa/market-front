@@ -5,10 +5,13 @@ import { useNavigate } from "react-router-dom";
 function SalesView() {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [userStatus, setUserStatus] = useState(null);
+  const axiosInstance = axios.create({
+    withCredentials: true,
+  })
   useEffect(() => {
-    const axiosInstance = axios.create({
-      withCredentials: true,
-    })
+  
     axiosInstance
       .get("http://localhost:1200/api/sales/sales")
       .then((res) => {
@@ -17,11 +20,30 @@ function SalesView() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+      getUser();
+      if (userStatus === 0) {
+        navigate("/products");
+      }
+  }, [userStatus]);
+
+  const getUser = async () => {
+    try {
+      const { data } = await axiosInstance.post(
+        "http://localhost:1200/api/auth/getUser"
+      );
+      if (setIsAdmin) {
+        setIsAdmin(data.user.status);
+        setUserStatus(data.user.status);
+
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
-      <Navbar />
+      <Navbar setIsAdmin={setIsAdmin} isAdmin={isAdmin}/>
       <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">

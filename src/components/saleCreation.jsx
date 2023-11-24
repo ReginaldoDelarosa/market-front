@@ -1,13 +1,14 @@
 import Navbar from "./navbar";
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
+
 import { useNavigate, useParams } from "react-router-dom";
 function SaleCreation(props) {
   const [codigoProducto, setCodigoProducto] = useState('');
   const [cantidadVendida, setCantidadVendida] = useState('');
   const [totalVenta, setTotalVenta] = useState('0');
   const [producto, setProducto] = useState({});
-
+  const [isAdmin, setIsAdmin] = useState(false);
   const {id } = useParams();
 
   useEffect(() => {
@@ -72,7 +73,7 @@ function SaleCreation(props) {
 
   return (
     <div className={"dark:bg-gray-900 pb-20 "}>
-      <Navbar />
+      <Navbar setIsAdmin={setIsAdmin} isAdmin={isAdmin}/>
 
       <form   className="max-w-sm mx-auto" style={{gap: "1rem"}}>
     

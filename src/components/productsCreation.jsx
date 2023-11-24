@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Navbar from "./navbar";
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
@@ -7,18 +8,43 @@ function ProductsCreation(props) {
   const [descripcion, setDescripcion] = useState('');
   const [precio, setPrecio] = useState('0');
   const [cantidad, setCantidad] = useState('0');
-
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [userStatus, setUserStatus] = useState(null);
+  const navigate = useNavigate();
   const {id } = useParams();
+  const axiosInstance = axios.create({
+    withCredentials: true,
+  });
+  const getUser = async () => {
+    try {
+      const { data } = await axiosInstance.post(
+        "http://localhost:1200/api/auth/getUser"
+      );
+      if (setIsAdmin) {
+        setIsAdmin(data.user.status);
+        setUserStatus(data.user.status);
+
+      }
+    } catch (error) {
+      navigate("/products");
+    }
+  };
 
   useEffect(() => {
     if (id) {
       getProduct();
     }
-  },[])
+    getUser();
+    if (userStatus === 0) {
+      navigate("/products");
+    }
+
+  },[userStatus])
 
   const getProduct = async () => {
     try {
-      const response = await axios.get(`http://localhost:1200/api/products/products/${id}`);
+
+      const response = await axiosInstance.get(`http://localhost:1200/api/products/products/${id}`);
       setNombre(response.data.nombre);
       setDescripcion(response.data.descripcion);
       setPrecio(response.data.precio);
@@ -38,7 +64,7 @@ function ProductsCreation(props) {
 
   const createProduct = async (nombre, descripcion, precio, cantidad) => {
     try {
-      const response = await axios.post('http://localhost:1200/api/products/products/', {
+      const response = await axiosInstance.post('http://localhost:1200/api/products/products/', {
         nombre,
         descripcion,
         precio,
@@ -57,7 +83,7 @@ function ProductsCreation(props) {
   };
   const updateProduct = async (nombre, descripcion, precio, cantidad) => {
     try {
-      const response = await axios.patch(`http://localhost:1200/api/products/products/${id}`, {
+      const response = await axiosInstance.patch(`http://localhost:1200/api/products/products/${id}`, {
         nombre,
         descripcion,
         precio,
@@ -77,7 +103,7 @@ function ProductsCreation(props) {
 
   return (
     <div className={"dark:bg-gray-900 pb-20 "}>
-      <Navbar />
+      <Navbar setIsAdmin={setIsAdmin} isAdmin={isAdmin} />
 
       <form   className="max-w-sm mx-auto" style={{gap: "1rem"}}>
     

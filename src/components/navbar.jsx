@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useContext, useState } from "react";
 import AdminContext from "../context/context";
-function Navbar({ setIsAdmin }) {
+function Navbar({ setIsAdmin, isAdmin }) {
   const navigate = useNavigate();
+  const [userStatus, setUserStatus] = useState(null);
   const axiosInstance = axios.create({
     withCredentials: true,
   });
@@ -28,6 +29,7 @@ function Navbar({ setIsAdmin }) {
       );
       if (setIsAdmin) {
         setIsAdmin(data.user.status);
+        setUserStatus(data.user.status);
 
       }
     } catch (error) {
@@ -40,6 +42,7 @@ function Navbar({ setIsAdmin }) {
 
   useEffect(() => {
     getUser();
+      
   });
   const productCreation = () => {
     navigate("/productsCreation");
@@ -109,14 +112,14 @@ function Navbar({ setIsAdmin }) {
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
-                  <a
+                  {isAdmin ? <a
                     href="#"
                     onClick={productCreation}
                     className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
                     aria-current="page"
                   >
                     Products Creation
-                  </a>
+                  </a>: <></>}
                   <a
                     onClick={products}
                     href="#"
@@ -131,13 +134,13 @@ function Navbar({ setIsAdmin }) {
                   >
                     Sales
                   </a>
-                  <a
+                  {isAdmin ? <a
                     href="#"
                     onClick={salesView}
                     className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                   >
                     Sales View
-                  </a>
+                  </a>: <></>}
                 </div>
               </div>
             </div>
