@@ -3,6 +3,7 @@ import Navbar from "./navbar";
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 function ProductsCreation(props) {
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
@@ -56,10 +57,25 @@ function ProductsCreation(props) {
   const handleSubmit = () => {
     // Llamar a la función createProduct con los valores obtenidos
     createProduct(nombre, descripcion, precio, cantidad);
+    Swal.fire({
+      icon: "success",
+      title: "Producto creado con éxito",
+      showConfirmButton: false,
+      timer: 1500,
+  })
    
   };
   const handleUpdate = () => {
     updateProduct(nombre, descripcion,precio, cantidad);
+    Swal.fire({
+      icon: "success",
+      title: "Producto actualizado con éxito",
+      showConfirmButton: false,
+      timer: 1500,
+  }).then(() => {
+
+      navigate("/products");
+  });
   }
 
   const createProduct = async (nombre, descripcion, precio, cantidad) => {

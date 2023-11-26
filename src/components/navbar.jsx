@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useContext, useState } from "react";
 import AdminContext from "../context/context";
-function Navbar({ setIsAdmin, isAdmin }) {
+function Navbar({ setIsAdmin, isAdmin, setUserId }) {
   const navigate = useNavigate();
   const [userStatus, setUserStatus] = useState(null);
   const axiosInstance = axios.create({
@@ -31,6 +31,10 @@ function Navbar({ setIsAdmin, isAdmin }) {
         setIsAdmin(data.user.status);
         setUserStatus(data.user.status);
 
+
+      }
+      if (setUserId) {
+        setUserId(data.user.id)
       }
     } catch (error) {
       navigate("/");

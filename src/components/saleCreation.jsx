@@ -1,7 +1,7 @@
 import Navbar from "./navbar";
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
-
+import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 function SaleCreation(props) {
   const [codigoProducto, setCodigoProducto] = useState('');
@@ -9,7 +9,9 @@ function SaleCreation(props) {
   const [totalVenta, setTotalVenta] = useState('0');
   const [producto, setProducto] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
+  const [userId, setUserId] = useState(null);
   const {id } = useParams();
+
 
   useEffect(() => {
     if (id) {
@@ -47,6 +49,12 @@ function SaleCreation(props) {
 
   const handleUpdate = () => {
     createSale();
+    Swal.fire({
+      icon: "success",
+      title: "Compra realizada con éxito",
+      showConfirmButton: false,
+      timer: 1500,
+  })
   }
 
   const createSale = async () => {
@@ -58,6 +66,7 @@ function SaleCreation(props) {
         codigo_producto: codigoProducto,
         cantidad_vendida: cantidadVendida,
         total_venta: totalVenta,
+        id_usuarios: userId
       });
   
       if (response.status === 200) {
@@ -73,7 +82,7 @@ function SaleCreation(props) {
 
   return (
     <div className={"dark:bg-gray-900 pb-20 "}>
-      <Navbar setIsAdmin={setIsAdmin} isAdmin={isAdmin}/>
+      <Navbar setIsAdmin={setIsAdmin} isAdmin={isAdmin} setUserId={setUserId}/>
 
       <form   className="max-w-sm mx-auto" style={{gap: "1rem"}}>
     

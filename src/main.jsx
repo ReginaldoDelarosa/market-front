@@ -15,6 +15,7 @@ import Sales from './components/sales';
 import ProductsCreation from './components/productsCreation.jsx';
 import SaleCreation from './components/saleCreation.jsx';
 import SalesView from './components/salesView.jsx';
+import SalesEdit from './components/salesEdit.jsx';
 
 
 const router = createBrowserRouter([
@@ -57,7 +58,11 @@ const router = createBrowserRouter([
   {
     path: "/salesView",
     element: <SalesView/>,
-  }
+  },
+  {
+    path: "/editSale/:id",
+    element: <SalesEdit/>,
+  },
 ]);
 
 

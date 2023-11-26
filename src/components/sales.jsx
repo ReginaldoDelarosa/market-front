@@ -98,13 +98,13 @@ function Sales() {
                       scope="col"
                       className="border-r px-6 py-4 dark:border-neutral-500"
                     >
-                      Nombre
+                      Nombre Producto
                     </th>
                     <th
                       scope="col"
                       className="border-r px-6 py-4 dark:border-neutral-500"
                     >
-                      Descripcion
+                      Descripcion Producto
                     </th>
                     <th
                       scope="col"

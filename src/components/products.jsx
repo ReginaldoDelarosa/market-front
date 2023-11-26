@@ -7,10 +7,11 @@ function Products() {
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
   const [userStatus, setUserStatus] = useState(null);
+  const axiosInstance = axios.create({
+    withCredentials: true,
+  });
   useEffect(() => {
-    const axiosInstance = axios.create({
-      withCredentials: true,
-    });
+
     axiosInstance
       .get("http://localhost:1200/api/products/products")
       .then((res) => {
@@ -35,6 +36,15 @@ function Products() {
       navigate("/products");
     }
   };
+
+  const deleteProduct = async (id) => {
+    try {
+      await axiosInstance.delete(`http://localhost:1200/api/products/products/${id}`);
+      setProducts(products.filter((product) => product.codigo !== id));
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     getUser();
@@ -117,6 +127,16 @@ function Products() {
                             aria-current="page"
                           >
                             Editar
+                          </a>
+                          <a
+                            href="#"
+                            onClick={() => {
+                              deleteProduct(product.codigo);
+                            }}
+                            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                            aria-current="page"
+                          >
+                            Delete
                           </a>
                         </td>
                       ) : (

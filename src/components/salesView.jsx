@@ -21,11 +21,20 @@ function SalesView() {
         console.log(err);
       });
       getUser();
+      console.log(products);
       if (userStatus === 0) {
         navigate("/products");
       }
   }, [userStatus]);
 
+  const deleteProduct = async (id) => {
+    try {
+      await axiosInstance.delete(`http://localhost:1200/api/sales/sales/${id}`);
+      setProducts(products.filter((product) => product.codigo !== id));
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const getUser = async () => {
     try {
       const { data } = await axiosInstance.post(
@@ -40,6 +49,9 @@ function SalesView() {
       console.log(error);
     }
   };
+  const editSale = (id) => {
+    navigate(`/edit-sale/${id}`);
+  }
 
   return (
     <>
@@ -67,6 +79,23 @@ function SalesView() {
                       scope="col"
                       class="border-r px-6 py-4 dark:border-neutral-500"
                     >
+                      Nombre del cliente
+                    </th>
+                    <th
+                      scope="col"
+                      class="border-r px-6 py-4 dark:border-neutral-500"
+                    >
+                      Telefono del cliente
+                    </th>
+                    <th
+                      scope="col"
+                      class="border-r px-6 py-4 dark:border-neutral-500"
+                    >
+                      Correo del cliente </th>
+                    <th
+                      scope="col"
+                      class="border-r px-6 py-4 dark:border-neutral-500"
+                    >
                       Fecha de venta
                     </th>
                     <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500"
@@ -74,9 +103,11 @@ function SalesView() {
                     >
                       Cantidad vendida
                     </th>
+        
                     <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
                       Total venta
                     </th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -89,6 +120,15 @@ function SalesView() {
                         {product.codigo_producto}
                       </td>
                       <td class="border-r px-6 py-4 dark:border-neutral-500">
+                        {product.username}
+                      </td>
+                      <td class="border-r px-6 py-4 dark:border-neutral-500">
+                        {product.telefono}
+                      </td>
+                      <td class="border-r px-6 py-4 dark:border-neutral-500">
+                        {product.email}
+                      </td>
+                      <td class="border-r px-6 py-4 dark:border-neutral-500">
                         {product.fecha_venta}
                       </td>
                       <td class="border-r px-6 py-4 dark:border-neutral-500">
@@ -97,6 +137,20 @@ function SalesView() {
                       <td class="border-r px-6 py-4 dark:border-neutral-500">
                         {product.total_venta}
                       </td>
+                      {isAdmin ? <td>
+                        <button
+                          onClick={() => navigate("/editSale/" + product.codigo)}
+                          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => deleteProduct(product.codigo)}
+                          class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                          Delete
+                        </button>
+                      </td> : <></>}
                     </tr>
                   ))}
                 </tbody>
