@@ -11,7 +11,7 @@ function Navbar({ setIsAdmin, isAdmin, setUserId }) {
 
   const logOut = () => {
     axiosInstance
-      .post("http://localhost:1200/api/auth/logout")
+      .post("https://login-auth-xqc9.onrender.com/api/auth/logout")
       .then((res) => {
         navigate("/");
         window.location.reload();
@@ -25,7 +25,7 @@ function Navbar({ setIsAdmin, isAdmin, setUserId }) {
   const getUser = async () => {
     try {
       const { data } = await axiosInstance.post(
-        "http://localhost:1200/api/auth/getUser"
+        "https://login-auth-xqc9.onrender.com/api/auth/getUser"
       );
       if (setIsAdmin) {
         setIsAdmin(data.user.status);

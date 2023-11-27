@@ -31,7 +31,7 @@ function App() {
 
   const checkLoggedIn = () => {
     axiosInstance
-      .get("http://localhost:1200/api/auth/getCharacter")
+      .get("https://login-auth-xqc9.onrender.com/api/auth/getCharacter")
       .then((res) => {
         setLoggedIn(true);
         setCharacter(res.data);
@@ -46,7 +46,7 @@ function App() {
     event.preventDefault();
 
     axiosInstance
-      .post("http://localhost:1200/api/auth/login", { username, password }, { withCredentials: true })
+      .post("https://login-auth-xqc9.onrender.com/api/auth/login", { username, password }, { withCredentials: true })
       .then(() => checkLoggedIn())
       .catch(() => console.log("Login failed"));
   };
@@ -56,7 +56,7 @@ function App() {
 
     axiosInstance
       .post(
-        "http://localhost:1200/api/auth/register",
+        "https://login-auth-xqc9.onrender.com/api/auth/register",
         { usernameR, email, passwordR, telefono },
         { withCredentials: true }
       )

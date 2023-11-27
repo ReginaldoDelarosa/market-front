@@ -19,7 +19,7 @@ function ProductsCreation(props) {
   const getUser = async () => {
     try {
       const { data } = await axiosInstance.post(
-        "http://localhost:1200/api/auth/getUser"
+        "https://login-auth-xqc9.onrender.com/api/auth/getUser"
       );
       if (setIsAdmin) {
         setIsAdmin(data.user.status);
@@ -45,7 +45,7 @@ function ProductsCreation(props) {
   const getProduct = async () => {
     try {
 
-      const response = await axiosInstance.get(`http://localhost:1200/api/products/products/${id}`);
+      const response = await axiosInstance.get(`https://login-auth-xqc9.onrender.com/api/products/products/${id}`);
       setNombre(response.data.nombre);
       setDescripcion(response.data.descripcion);
       setPrecio(response.data.precio);
@@ -80,7 +80,7 @@ function ProductsCreation(props) {
 
   const createProduct = async (nombre, descripcion, precio, cantidad) => {
     try {
-      const response = await axiosInstance.post('http://localhost:1200/api/products/products/', {
+      const response = await axiosInstance.post('https://login-auth-xqc9.onrender.com/api/products/products/', {
         nombre,
         descripcion,
         precio,
@@ -99,7 +99,7 @@ function ProductsCreation(props) {
   };
   const updateProduct = async (nombre, descripcion, precio, cantidad) => {
     try {
-      const response = await axiosInstance.patch(`http://localhost:1200/api/products/products/${id}`, {
+      const response = await axiosInstance.patch(`https://login-auth-xqc9.onrender.com/api/products/products/${id}`, {
         nombre,
         descripcion,
         precio,

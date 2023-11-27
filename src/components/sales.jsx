@@ -14,7 +14,7 @@ function Sales() {
   const [isAdmin, setIsAdmin] = useState(false);
   useEffect(() => {
     axiosInstance
-      .get("http://localhost:1200/api/products/products")
+      .get("https://login-auth-xqc9.onrender.com/api/products/products")
       .then((res) => {
         setProducts(res.data);
       })
@@ -33,7 +33,7 @@ function Sales() {
 
   const getProduct = async () => {
     try {
-      const response = await axiosInstance.get(`http://localhost:1200/api/products/products/${id}`);
+      const response = await axiosInstance.get(`https://login-auth-xqc9.onrender.com/api/products/products/${id}`);
       setNombre(response.data.nombre);
       setDescripcion(response.data.descripcion);
       setPrecio(response.data.precio);
@@ -50,7 +50,7 @@ function Sales() {
   ) => {
     try {
       const response = await axiosInstance.post(
-        "http://localhost:1200/api/sales/sales/",
+        "https://login-auth-xqc9.onrender.com/api/sales/sales/",
         {
           codigo_producto,
           nombre_cliente,

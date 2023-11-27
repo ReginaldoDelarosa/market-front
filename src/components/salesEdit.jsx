@@ -28,7 +28,7 @@ function SalesEdit(props) {
 
   useEffect(() => {
     axiosInstance
-      .get("http://localhost:1200/api/products/products")
+      .get("https://login-auth-xqc9.onrender.com/api/products/products")
       .then((res) => {
         setProducts(res.data);
       })
@@ -41,7 +41,7 @@ function SalesEdit(props) {
   const getSalesById = async (id) => {
     try {
       const { data } = await axiosInstance.get(
-        `http://localhost:1200/api/sales/sales/${id}`
+        `https://login-auth-xqc9.onrender.com/api/sales/sales/${id}`
       );
       setSales(data);
       setNombreCliente(data.username);
@@ -61,7 +61,7 @@ function SalesEdit(props) {
   const getSales = async () => {
     try {
       const { data } = await axiosInstance.get(
-        `http://localhost:1200/sales/sales`
+        `https://login-auth-xqc9.onrender.com/sales/sales`
       );
       setSales(data);
     } catch (error) {
@@ -76,7 +76,7 @@ function SalesEdit(props) {
     const getUsers = async () => {
       try {
         const { data } = await axiosInstance.get(
-          `http://localhost:1200/api/auth/getUsers`
+          `https://login-auth-xqc9.onrender.com/api/auth/getUsers`
         );
         setUsers(data._user);
       } catch (error) {
@@ -98,7 +98,7 @@ function SalesEdit(props) {
   const handleUpdate = async () => {
     try {
       const response = await axiosInstance.patch(
-        `http://localhost:1200/api/sales/sales/${id}`,
+        `https://login-auth-xqc9.onrender.com/api/sales/sales/${id}`,
         {
           codigo_producto: codigoProducto,
           cantidad_vendida: cantidadVendida,

@@ -34,7 +34,7 @@ function SaleCreation(props) {
       const axiosInstance = axios.create({
         withCredentials: true
       })
-      const response = await axiosInstance.get(`http://localhost:1200/api/products/products/${id}`);
+      const response = await axiosInstance.get(`https://login-auth-xqc9.onrender.com/api/products/products/${id}`);
       if (response.data) {
 
         setProducto(response.data)
@@ -62,7 +62,7 @@ function SaleCreation(props) {
       const axiosInstance = axios.create({
         withCredentials: true
       })
-      const response = await axiosInstance.post('http://localhost:1200/api/sales/sales/', {
+      const response = await axiosInstance.post('https://login-auth-xqc9.onrender.com/api/sales/sales/', {
         codigo_producto: codigoProducto,
         cantidad_vendida: cantidadVendida,
         total_venta: totalVenta,

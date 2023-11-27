@@ -13,7 +13,7 @@ function SalesView() {
   useEffect(() => {
   
     axiosInstance
-      .get("http://localhost:1200/api/sales/sales")
+      .get("https://login-auth-xqc9.onrender.com/api/sales/sales")
       .then((res) => {
         setProducts(res.data);
       })
@@ -29,7 +29,7 @@ function SalesView() {
 
   const deleteProduct = async (id) => {
     try {
-      await axiosInstance.delete(`http://localhost:1200/api/sales/sales/${id}`);
+      await axiosInstance.delete(`https://login-auth-xqc9.onrender.com/api/sales/sales/${id}`);
       setProducts(products.filter((product) => product.codigo !== id));
     } catch (error) {
       console.log(error);
@@ -38,7 +38,7 @@ function SalesView() {
   const getUser = async () => {
     try {
       const { data } = await axiosInstance.post(
-        "http://localhost:1200/api/auth/getUser"
+        "https://login-auth-xqc9.onrender.com/api/auth/getUser"
       );
       if (setIsAdmin) {
         setIsAdmin(data.user.status);
