@@ -167,34 +167,34 @@ function Navbar({ setIsAdmin, isAdmin, setUserId }) {
         <div className="sm:hidden" id="mobile-menu">
           <div className="space-y-1 px-2 pb-3 pt-2">
           {isAdmin ? <a
-                    href="#"
-                    onClick={productCreation}
-                    className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                    aria-current="page"
-                  >
-                    Products Creation
-                  </a>: <></>}
-                  <a
-                    onClick={products}
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                  >
-                    Products
-                  </a>
-                  <a
-                    href="#"
-                    onClick={sales}
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                  >
-                    Sales
-                  </a>
-                  {isAdmin ? <a
-                    href="#"
-                    onClick={salesView}
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                  >
-                    Sales View
-                  </a>: <></>}
+              href="#"
+              onClick={productCreation}
+              className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+              aria-current="page"
+            >
+              Products Creation
+            </a>: <></>}
+            <a
+              onClick={products}
+              href="#"
+              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+            >
+              Products
+            </a>
+            <a
+              href="#"
+              onClick={sales}
+              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+            >
+              Sales
+            </a>
+            {isAdmin ? <a
+              href="#"
+              onClick={salesView}
+              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+            >
+              Sales View
+            </a>: <></>}  
           </div>
         </div>
       </nav>
