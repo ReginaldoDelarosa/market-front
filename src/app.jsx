@@ -31,7 +31,7 @@ function App() {
 
   const checkLoggedIn = () => {
     axiosInstance
-      .get("https://login-auth-xqc9.onrender.com/api/auth/getCharacter")
+      .get("https://login-auth-xqc9.onrender.com/api/products/products")
       .then((res) => {
         setLoggedIn(true);
         setCharacter(res.data);
