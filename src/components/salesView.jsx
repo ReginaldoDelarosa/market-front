@@ -49,9 +49,6 @@ function SalesView() {
       console.log(error);
     }
   };
-  const editSale = (id) => {
-    navigate(`/edit-sale/${id}`);
-  }
 
   return (
     <>

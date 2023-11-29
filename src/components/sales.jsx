@@ -42,36 +42,7 @@ function Sales() {
       console.log(error);
     }
   }
-  const createSale = async (
-    codigo_producto,
-    fecha_venta,
-    cantidad_vendida,
-    total_venta
-  ) => {
-    try {
-      const response = await axiosInstance.post(
-        "https://login-auth-xqc9.onrender.com/api/sales/sales/",
-        {
-          codigo_producto,
-          nombre_cliente,
-          telefono_cliente,
-          fecha_venta,
-          cantidad_vendida,
-          total_venta
-        }
-      );
-        
- 
-      if (response.status === 200) {
-        console.log("Producto creado con éxito");
-      } else {
-        console.error("Error al crear el producto");
-      }
-    } catch (error) {
-      console.log(error);
-      console.error("Error al crear el producto");
-    }
-  };
+
 
   const handleSubmit = (codigo) => {
     // Llamar a la función createProduct con los valores obtenidos

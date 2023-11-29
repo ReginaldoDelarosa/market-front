@@ -58,16 +58,7 @@ function SalesEdit(props) {
     }
   };
 
-  const getSales = async () => {
-    try {
-      const { data } = await axiosInstance.get(
-        `https://login-auth-xqc9.onrender.com/sales/sales`
-      );
-      setSales(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
   useEffect(() => {
     getSalesById(id);
   }, [id]);
